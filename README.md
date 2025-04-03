@@ -60,3 +60,4 @@ For more information, do not forget to check out the following:
 - [Robocorp Documentation -site](https://robocorp.com/docs)
 - [Portal for more examples](https://robocorp.com/portal)
 - Follow our main [robocorp -repository](https://github.com/robocorp/robocorp) as it is the main location where we developed the libraries and the framework.
+- Check out our [YouTube playlists](https://www.youtube.com/@Robocorp/playlists) for more learning

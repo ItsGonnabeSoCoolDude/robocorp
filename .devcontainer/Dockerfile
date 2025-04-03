@@ -27,11 +27,11 @@ RUN curl -sLo miniconda.sh https://repo.anaconda.com/miniconda/Miniconda3-latest
 FROM conda AS final
 
 # Copy configuration files
-COPY conda.yaml robot.yaml ./
+COPY conda.yml robot.yaml ./
 COPY tasks.py ./
 
-# Create Conda environment from conda.yaml
-RUN /opt/conda/bin/conda env create -f conda.yaml -p /opt/conda/envs/env && \
+# Create Conda environment from conda.yml
+RUN /opt/conda/bin/conda env create -f conda.yml -p /opt/conda/envs/env && \
     /opt/conda/bin/conda clean --all -f -y
 
 # Install Playwright browsers

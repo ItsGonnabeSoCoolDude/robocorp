@@ -24,21 +24,21 @@ The template provides you with the basic structure of a Python project: logging 
 
 ## Dependencies
 
-We strongly recommend getting familiar with adding your dependencies in [conda.yaml](conda.yaml) to control your Python dependencies and the whole Python environment for your automation.
+We strongly recommend getting familiar with adding your dependencies in [conda.yml](conda.yml) to control your Python dependencies and the whole Python environment for your automation.
 Playwright is necessary for access to browsers from a WSL Ubuntu distribution.
 
 <details>
   <summary>🙋‍♂️ "Why not just pip install...?"</summary>
 
-Think of [conda.yaml](conda.yaml) as an equivalent of the requirements.txt, but much better. 👩‍💻 With `conda.yaml`, you are not just controlling your PyPI dependencies; you control the complete Python environment, which makes things repeatable and easy.
+Think of [conda.yml](conda.yml) as an equivalent of the requirements.txt, but much better. 👩‍💻 With `conda.yml`, you are not just controlling your PyPI dependencies; you control the complete Python environment, which makes things repeatable and easy.
 
-👉 You will probably need to run your code on another machine quite soon, so by using `conda.yaml`:
+👉 You will probably need to run your code on another machine quite soon, so by using `conda.yml`:
 - You can avoid `Works on my machine` -cases
 - You do not need to manage Python installations on all the machines
 - You can control exactly which version of Python your automation will run on 
   - You'll also control the pip version to avoid dep. resolution changes
 - No need for venv, pyenv, ... tooling and knowledge sharing inside your team.
-- Define dependencies in conda.yaml, let our tooling do the heavy lifting.
+- Define dependencies in conda.yml, let our tooling do the heavy lifting.
 - You get all the content of [conda-forge](https://prefix.dev/channels/conda-forge) without any extra tooling
 
 > Dive deeper with [these](https://github.com/robocorp/rcc/blob/master/docs/recipes.md#what-is-in-condayaml) resources.

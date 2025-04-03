@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  rpa:
+    build:
+      context: .
+      args:
+        PYTHON_VERSION: ${PYTHON_VERSION:-3.12.8}
+    volumes:
+      - ./output:/app/output
+    environment:
+      - PYTHONPATH=/app:.
+      - DISPLAY=:99  # For browser automation if needed
+    command: ["python", "-m", "robocorp.tasks", "run", "tasks.py"]

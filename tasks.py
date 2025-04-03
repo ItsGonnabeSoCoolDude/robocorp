@@ -1,5 +1,6 @@
-from robocorp.tasks import task
-from robocorp import browser
+from robocorp.tasks import task     # The task decorator is what the sema4 extension hooks to run a bot
+from robocorp import browser        # How to interact with browser windows
+from RPA.HTTP import HTTP           # how to download files from remote web servers
 
 
 @task
@@ -34,3 +35,6 @@ def fill_and_submit_sales_form():
     page.select_option("#salestarget", "10000")
     page.fill("#salesresult", "123")
     page.click("text=Submit")
+
+def download_excel_file():
+    """Downloads excel file from the given URL"""

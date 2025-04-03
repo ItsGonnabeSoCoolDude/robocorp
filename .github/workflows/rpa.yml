@@ -1,5 +1,10 @@
 name: RPA Workflow
 
+# This adds a required status check that GitHub will recognize
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 on:
   push:
     branches: [ main, master ]

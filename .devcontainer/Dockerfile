@@ -1,42 +1,56 @@
-# Multi-stage build to support multiple Python versions
+# Multi-stage build for easy version switching
 ARG PYTHON_VERSION=3.12.8
 FROM python:${PYTHON_VERSION}-slim AS base
 
 # Set working directory
 WORKDIR /workspaces/${localWorkspaceFolderBasename}
 
-# Install system dependencies
-RUN apt-get update && apt-get install -y \
+# Install system dependencies with caching
+RUN apt-get update && apt-get install -y --no-install-recommends \
     gcc \
     g++ \
     libffi-dev \
     libssl-dev \
     curl \
     git \
+    && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
-# Install Miniconda
+# Create a cache directory for apt (optional, for local testing)
+RUN mkdir -p /var/cache/apt && \
+    chmod -R 777 /var/cache/apt
+
+# Install Miniconda with volume-based caching
 FROM base AS conda
-RUN curl -sLo miniconda.sh https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh && \
+# Miniconda will be mounted from the conda-cache volume, so only install if missing
+RUN if [ ! -d /opt/conda ]; then \
+    curl -sLo miniconda.sh https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh && \
     bash miniconda.sh -b -p /opt/conda && \
     rm miniconda.sh && \
     /opt/conda/bin/conda config --add channels conda-forge && \
-    /opt/conda/bin/conda clean -a -y
+    /opt/conda/bin/conda clean -a -y; \
+    fi
 
 # Final stage
 FROM conda AS final
 
-# Copy configuration files
-COPY conda.yml robot.yaml ./
-COPY tasks.py ./
+# Copy configuration files from the parent directory
+COPY ../conda.yml ../robot.yaml ./
+COPY ../tasks.py ./
 
-# Create Conda environment from conda.yml
-RUN /opt/conda/bin/conda env create -f conda.yml -p /opt/conda/envs/env && \
-    /opt/conda/bin/conda clean --all -f -y
+# Create Conda environment with volume-based caching
+RUN if [ ! -d /opt/conda/envs/env ]; then \
+    /opt/conda/bin/conda env create -f conda.yml -p /opt/conda/envs/env && \
+    /opt/conda/bin/conda clean --all -f -y; \
+    fi
 
-# Install Playwright browsers
-RUN /opt/conda/envs/env/bin/python -m playwright install chromium && \
-    /opt/conda/envs/env/bin/python -m playwright install-deps
+# Install Playwright browsers with volume-based caching
+RUN mkdir -p /root/.cache/ms-playwright && \
+    chmod -R 777 /root/.cache/ms-playwright
+RUN if [ ! -d /root/.cache/ms-playwright/chromium ]; then \
+    /opt/conda/envs/env/bin/python -m playwright install chromium && \
+    /opt/conda/envs/env/bin/python -m playwright install-deps; \
+    fi
 
 # Set environment variables
 ENV PATH="/opt/conda/envs/env/bin:$PATH"

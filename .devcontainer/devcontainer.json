@@ -15,12 +15,14 @@
         "vscode": {
             "extensions": [
                 "ms-python.python",             // Python extension
-                "sema4ai.sema4ai",              // Sema4 extension
-                "ms-python.black-formatter",    // Black formatter
+                "ms-python.debugpy",            // Python Debugger
                 "ms-python.vscode-pylance",     // Pylance
+                "ms-python.black-formatter",    // Black formatter
+                "sema4ai.sema4ai",              // Sema4 extension
                 "redhat.vscode-yaml",           // YAML support
                 "eamodio.gitlens",              // GitLens
-                "ms-azuretools.vscode-docker"   // Docker
+                "ms-azuretools.vscode-docker",  // Docker
+                "tomoki1207.pdf"                // PDF Viewer
             ],
             "settings": {
                 "python.defaultInterpreterPath": "/opt/conda/envs/env/bin/python",
@@ -45,6 +47,9 @@
     "postCreateCommand": "bash .devcontainer/post-create.sh",
     "remoteUser": "vscode",
     "mounts": [
-        "source=${localWorkspaceFolder}/output,target=/workspaces/${localWorkspaceFolderBasename}/output,type=bind,consistency=cached"
-    ]
+    "source=${localWorkspaceFolder}/output,target=/workspaces/${localWorkspaceFolderBasename}/output,type=bind,consistency=cached",
+    "source=conda-cache,target=/opt/conda,type=volume",
+    "source=conda-env-cache,target=/opt/conda/envs/env,type=volume",
+    "source=playwright-cache,target=/root/.cache/ms-playwright,type=volume"
+  ]
 }

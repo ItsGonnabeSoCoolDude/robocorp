@@ -1,6 +1,7 @@
 # Template: Python - Minimal
 
 This template leverages the new [Python framework](https://github.com/robocorp/robocorp), the [libraries](https://github.com/robocorp/robocorp/blob/master/docs/README.md#python-libraries) from to same project as well.
+Courses for Sema4 (Robocorp) are found here https://sema4.ai/docs/automation/courses/beginners-course-python
 
 The template provides you with the basic structure of a Python project: logging out of the box and controlling your tasks without fiddling with the base Python stuff. The environment contains the most used libraries, so you do not have to start thinking about those right away. 
 
@@ -24,6 +25,7 @@ The template provides you with the basic structure of a Python project: logging 
 ## Dependencies
 
 We strongly recommend getting familiar with adding your dependencies in [conda.yaml](conda.yaml) to control your Python dependencies and the whole Python environment for your automation.
+Playwright is necessary for access to browsers from a WSL Ubuntu distribution.
 
 <details>
   <summary>🙋‍♂️ "Why not just pip install...?"</summary>

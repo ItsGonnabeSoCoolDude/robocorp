@@ -10,7 +10,7 @@ The template provides you with the basic structure of a Python project: logging 
 ## Running
 
 #### VS Code
-1. Get [Robocorp Code](https://robocorp.com/docs/developer-tools/visual-studio-code/extension-features) -extension for VS Code.
+1. Get [Sema4.ai]([https://robocorp.com/docs/developer-tools/visual-studio-code/extension-features](https://sema4.ai/docs/automation/visual-studio-code/extension-features)) -extension for VS Code.
 1. You'll get an easy-to-use side panel and powerful command-palette commands for running, debugging, code completion, docs, etc.
 
 #### Command line

@@ -20,6 +20,21 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 RUN mkdir -p /var/cache/apt && \
     chmod -R 777 /var/cache/apt
 
+# Install Robocorp Command Line (rcc) with volume-based caching
+RUN mkdir -p /usr/local/robocorp/bin && \
+    chmod -R 777 /usr/local/robocorp
+RUN if [ ! -f /usr/local/robocorp/bin/rcc ]; then \
+    curl -o rcc https://downloads.robocorp.com/rcc/releases/latest/linux64/rcc && \
+    chmod +x rcc && \
+    mv rcc /usr/local/robocorp/bin/ && \
+    # Create directory for rcc's own cache
+    mkdir -p /home/.robocorp && \
+    chmod -R 777 /home/.robocorp; \
+    fi
+
+# Add rcc to PATH
+ENV PATH="/usr/local/robocorp/bin:$PATH"
+
 # Install Miniconda with volume-based caching
 FROM base AS conda
 # Miniconda will be mounted from the conda-cache volume, so only install if missing

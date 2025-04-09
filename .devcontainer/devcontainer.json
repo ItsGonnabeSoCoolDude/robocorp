@@ -9,7 +9,9 @@
     },
     "runArgs": [
         "--env",
-        "PYTHONPATH=/workspaces/${localWorkspaceFolderBasename}:."
+        "PYTHONPATH=/workspaces/${localWorkspaceFolderBasename}:.",
+        // Ensure WSL interop is enabled
+        "--network=host"
     ],
     "customizations": {
         "vscode": {
@@ -47,6 +49,7 @@
     "postCreateCommand": "bash .devcontainer/post-create.sh",
     "remoteUser": "vscode",
     "mounts": [
+        "source=/mnt/c,target=/mnt/c,type=bind,consistency=cached",
         "source=${localWorkspaceFolder}/output,target=/workspaces/${localWorkspaceFolderBasename}/output,type=bind,consistency=cached",
         "source=conda-cache,target=/opt/conda,type=volume",
         "source=conda-env-cache,target=/opt/conda/envs/env,type=volume",

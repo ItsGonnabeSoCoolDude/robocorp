@@ -63,7 +63,7 @@ def download_excel_file():
     # This way, we can count on the local file being always the most recent version (if the file exists, the robot has our permission to overwrite it).
     http = HTTP()
     http.download(
-        url="https://robotsparebinindustries.com/SalesData.xlsx", overwrite=True
+        url="https://robotsparebinindustries.com/SalesData.xlsx", overwrite=True, target_file="output/SalesData.xlsx"
     )
 
 
@@ -73,7 +73,7 @@ def fill_form_with_excel_data():
     # just don't forget to close your notebook after reading it!
     # We just need to pass it the file name:
     excel = Files()
-    excel.open_workbook("SalesData.xlsx")
+    excel.open_workbook("output/SalesData.xlsx")
     worksheet = excel.read_worksheet_as_table("data", header=True)
     excel.close_workbook()
 

@@ -24,7 +24,8 @@
                 "redhat.vscode-yaml",           // YAML support
                 "eamodio.gitlens",              // GitLens
                 "ms-azuretools.vscode-docker",  // Docker
-                "tomoki1207.pdf"                // PDF Viewer
+                "tomoki1207.pdf",               // PDF Viewer
+                "github.vscode-github-actions"  // Github Actions
             ],
             "settings": {
                 "python.defaultInterpreterPath": "/opt/conda/envs/env/bin/python",

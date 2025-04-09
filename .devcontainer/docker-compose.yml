@@ -5,7 +5,7 @@ services:
     build:
       context: .
       args:
-        PYTHON_VERSION: ${PYTHON_VERSION:-3.12.8}
+        PYTHON_VERSION: ${PYTHON_VERSION:-3.12.9}
     volumes:
       - ./output:/app/output
     environment:

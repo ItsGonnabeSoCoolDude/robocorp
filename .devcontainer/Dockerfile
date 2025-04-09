@@ -60,9 +60,9 @@ RUN if [ ! -d /opt/conda/envs/env ]; then \
     fi
 
 # Install Playwright browsers with volume-based caching
-RUN mkdir -p /root/.cache/ms-playwright && \
-    chmod -R 777 /root/.cache/ms-playwright
 RUN if [ ! -d /root/.cache/ms-playwright/chromium ]; then \
+    mkdir -p /root/.cache/ms-playwright && \
+    chmod -R 777 /root/.cache/ms-playwright && \
     /opt/conda/envs/env/bin/python -m playwright install chromium && \
     /opt/conda/envs/env/bin/python -m playwright install-deps; \
     fi

@@ -1,5 +1,5 @@
 # Multi-stage build for easy version switching
-ARG PYTHON_VERSION=3.12.8
+ARG PYTHON_VERSION=3.12.9
 FROM python:${PYTHON_VERSION}-slim AS base
 
 # Set working directory
